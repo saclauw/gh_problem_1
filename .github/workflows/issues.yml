@@ -6,6 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Output Github Issues
+        run: echo "${{ toJSON(github.event) }}"
         run: echo "${{ toJSON(github.repository_issue_comment_url) }}"
         run: echo "${{ toJSON(github.repository_issue_events_url) }}"
         run: echo "${{ toJSON(github.repository_issues_url) }}"
