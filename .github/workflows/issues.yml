@@ -1,0 +1,12 @@
+name: Issue Opened
+on:
+  issues:
+  types: [opened, closed]
+jobs:
+  output-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output Github Issues
+        run: echo "${{ toJSON(github.repository_issue_comment_url) }}"
+        run: echo "${{ toJSON(github.repository_issue_events_url) }}"
+        run: echo "${{ toJSON(github.repository_issues_url) }}"
