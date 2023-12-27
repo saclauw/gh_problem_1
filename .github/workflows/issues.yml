@@ -1,6 +1,5 @@
 name: Issue Opened
-on:
-  issues:
+on: issues
   types: [opened, closed]
 jobs:
   output-issue:
