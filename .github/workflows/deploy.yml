@@ -1,0 +1,50 @@
+name: Deploy Project
+on: [push]
+jobs:
+  lintydoo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: npm lint
+  testyloo:
+    needs: lintydoo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Test
+        run: npm test
+  buildyboo:
+    needs: [lintydoo, testyloo]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+  deploypoo:
+    needs: [lintydoo, testyloo, buildyboo]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fake Deploy
+        run: echo "Deploying....not"
