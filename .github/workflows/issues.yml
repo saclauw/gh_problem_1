@@ -4,8 +4,11 @@ jobs:
   output-issue:
     runs-on: ubuntu-latest
     steps:
-      - name: Output Github Issues
+      - name: Output Event
         run: echo "${{ toJSON(github.event) }}"
+      - name: Output Issues Comment
         run: echo "${{ toJSON(github.repository_issue_comment_url) }}"
+      - name: Output Issues Events URL
         run: echo "${{ toJSON(github.repository_issue_events_url) }}"
+      - name: Output Issues URL
         run: echo "${{ toJSON(github.repository_issues_url) }}"
